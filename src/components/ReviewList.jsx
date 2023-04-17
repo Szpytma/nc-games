@@ -20,16 +20,7 @@ function ReviewList() {
       <ul>
         {reviews.map((review) => (
           <ReviewCard
-            key={review.review_id}
-            review_id={review.review_id}
-            title={review.title}
-            category={review.category}
-            designer={review.designer}
-            owner={review.owner}
-            review_body={review.review_body}
-            review_img_url={review.review_img_url}
-            created_at={review.created_at}
-            votes={review.votes}
+            review= {review}
           />
         ))}
       </ul>
