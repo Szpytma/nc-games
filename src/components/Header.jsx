@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 function Header({ name, paragraph }) {
   return (
-    <header>
+    <header className="Header">
       <Link to={"/"}>
         <h1>{name}</h1>
       </Link>
 
-      <p>{paragraph}</p>
+      <h2>{paragraph}</h2>
 
       <Link to={`/reviews`}>Reviews</Link>
     </header>

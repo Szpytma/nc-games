@@ -7,15 +7,15 @@
   padding: 40px;
 }
 
-ul {
+.ReviewList p {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 @media (max-width: 767px) {
-  .ItemList {
-    padding: 20px;
+  .ReviewList {
+    display: block;
   }
 }
 
@@ -54,8 +54,17 @@ ul {
 @media (max-width: 767px) {
   .ReviewCard {
     margin: 20px auto;
-    width: calc(50% - 40px);
+    width: calc(50%);
+    height: calc(50%);
     display: block;
+  }
+  .ReviewCard h2 p {
+    font-size: smaller;
+    padding: 0px;
+  }
+  .ReviewCard img {
+    width: 200px;
+    height: 200px;
   }
 }
 
