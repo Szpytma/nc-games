@@ -7,15 +7,15 @@
   padding: 40px;
 }
 
-ul {
+.ReviewList p {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 @media (max-width: 767px) {
-  .ItemList {
-    padding: 20px;
+  .ReviewList {
+    display: block;
   }
 }
 
@@ -38,7 +38,7 @@ ul {
   align-items: center;
 }
 
-.ReviewCard h4 {
+.ReviewCard h2 {
   font-size: 1rem;
   margin: 0;
   padding: 20px;
@@ -54,7 +54,46 @@ ul {
 @media (max-width: 767px) {
   .ReviewCard {
     margin: 20px auto;
-    width: calc(50% - 40px);
+    width: calc(50%);
+    height: calc(50%);
     display: block;
   }
+  .ReviewCard h2 p {
+    font-size: smaller;
+    padding: 0px;
+  }
+  .ReviewCard img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.Review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.Review h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Review p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.Review img {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
 }

@@ -17,13 +17,9 @@ function ReviewList() {
     <p>is loading...</p>
   ) : (
     <div className="ReviewList">
-      <ul>
-        {reviews.map((review) => (
-          <ReviewCard
-            review= {review}
-          />
-        ))}
-      </ul>
+      {reviews.map((review) => (
+        <ReviewCard key={review.review_id} review={review} />
+      ))}
     </div>
   );
 }
