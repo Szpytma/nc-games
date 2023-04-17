@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ReviewList from "./components/ReviewList";
 import Review from "./components/Review";
+import Welcome from "./components/Welcome";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         paragraph="No boredom on our board games."
       />
       <Routes>
+        <Route path="/" element={<Welcome />} />
         <Route path="/reviews" element={<ReviewList />} />
         <Route path="/reviews/:review_id" element={<Review />} />
       </Routes>
