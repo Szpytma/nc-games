@@ -1,7 +1,9 @@
+import { Route, Routes } from "react-router";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ReviewList from "./components/ReviewList";
+import Review from "./components/Review";
 
 function App() {
   return (
@@ -11,7 +13,11 @@ function App() {
         name="NC Games"
         paragraph="No boredom on our board games."
       />
-      <ReviewList />
+      <Routes>
+        <Route path="/reviews" element={<ReviewList />} />
+        <Route path="/reviews/:review_id" element={<Review />} />
+      </Routes>
+
       <Footer className="Footer" />
     </div>
   );

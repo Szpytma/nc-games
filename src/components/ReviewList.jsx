@@ -19,9 +19,7 @@ function ReviewList() {
     <div className="ReviewList">
       <ul>
         {reviews.map((review) => (
-          <ReviewCard
-            review= {review}
-          />
+          <ReviewCard key={review.review_id} review={review} />
         ))}
       </ul>
     </div>
