@@ -3,6 +3,7 @@ import * as api from "../api.js";
 import { useParams } from "react-router";
 import CommentCard from "./CommentCard.jsx";
 import "./CommentsStyles.css";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 function CommentList() {
   const [comments, setComments] = useState([]);
@@ -16,7 +17,7 @@ function CommentList() {
   }, [review_id]);
 
   return isLoading ? (
-    <p>is loading...</p>
+    <LoadingSpinner />
   ) : (
     <div className="CommentCard">
       {comments.map((comment) => (

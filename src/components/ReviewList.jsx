@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as api from "../api.js";
 import ReviewCard from "./ReviewCard.jsx";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 import "./ReviewStyles.css";
 
 function ReviewList() {
@@ -14,7 +15,7 @@ function ReviewList() {
   }, [setReviews]);
 
   return isLoading ? (
-    <p>is loading...</p>
+    <LoadingSpinner />
   ) : (
     <div className="ReviewList">
       {reviews.map((review) => (

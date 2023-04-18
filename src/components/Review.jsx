@@ -1,8 +1,8 @@
 import { useParams } from "react-router";
 import * as api from "../api.js";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import CommentList from "./CommentList.jsx";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 function Review() {
   const { review_id } = useParams();
@@ -25,7 +25,7 @@ function Review() {
   }, [review_id]);
 
   return isLoading ? (
-    <p>is loading...</p>
+    <LoadingSpinner />
   ) : (
     <div className="Review">
       <h2>{review.title}</h2>
