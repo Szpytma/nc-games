@@ -1,18 +1,33 @@
 import axios from "axios";
 
-const baseUrl = "https://nc-games-rkbx.onrender.com/api/";
+const api = axios.create({
+  baseURL: "https://nc-games-rkbx.onrender.com/api/",
+});
 
 export const fetchReviews = async () => {
-  const { data } = await axios.get(`${baseUrl}reviews`);
+  const { data } = await api.get(`reviews`);
   return data.reviews;
 };
 
 export const fetchReviewById = async (review_id) => {
-  const { data } = await axios.get(`${baseUrl}reviews/${review_id}`);
+  const { data } = await api.get(`reviews/${review_id}`);
   return data.review;
 };
 
 export const fetchCommentsByReviewId = async (review_id) => {
-  const { data } = await axios.get(`${baseUrl}reviews/${review_id}/comments`);
+  const { data } = await api.get(`reviews/${review_id}/comments`);
   return data.comments;
+};
+
+export const patchReviewVotesAdd = async (review_id) => {
+  const { data } = await api.patch(`reviews/${review_id}`, {
+    inc_votes: 1,
+  });
+  return data.review;
+};
+export const patchReviewVotesDeduct = async (review_id) => {
+  const { data } = await api.patch(`reviews/${review_id}`, {
+    inc_votes: -1,
+  });
+  return data.review;
 };
