@@ -16,6 +16,8 @@ function Review() {
     const formattedDate = date.toLocaleString();
     return formattedDate;
   };
+
+  // TODO allow ser to unclick like /dislike button
   const handleClickLike = () => {
     if (likeDisabled) {
       setLikeDisabled(false);
