@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./ReviewStyles.css";
+
 function ReviewCard({ review }) {
   return (
     <div className="ReviewCard">
@@ -8,7 +9,10 @@ function ReviewCard({ review }) {
       </Link>
       <p>{review.designer}</p>
       <img src={review.review_img_url} alt="img" />
-      <p>{review.votes}❤️</p>
+      <p>
+      {/* TODO fix the api to get the count on review*/}
+        {review.votes}❤️ ✍️{0}
+      </p>
     </div>
   );
 }

@@ -1,9 +1,7 @@
 function CommentCard({ comment }) {
   const formatDate = (dataString) => {
     const date = new Date(dataString);
-    const formattedDate = `${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
+    const formattedDate = date.toLocaleString();
     return formattedDate;
   };
   return (

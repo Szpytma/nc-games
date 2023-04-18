@@ -11,9 +11,7 @@ function Review() {
 
   const formatDate = (dataString) => {
     const date = new Date(dataString);
-    const formattedDate = `${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
+    const formattedDate = date.toLocaleString();
     return formattedDate;
   };
 
@@ -34,7 +32,7 @@ function Review() {
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
-      <p>Votes :{review.votes}</p>
+      <p>Votes {review.votes} 👍</p>
       <img src={review.review_img_url} alt="img" />
       <p>Comments: {review.comment_count}</p>
       <CommentList />

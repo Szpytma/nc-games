@@ -19,7 +19,11 @@ function ReviewList() {
   ) : (
     <div className="ReviewList">
       {reviews.map((review) => (
-        <ReviewCard key={review.review_id} review={review} />
+        <ReviewCard
+          key={review.review_id}
+          review={review}
+          comments={review.comments}
+        />
       ))}
     </div>
   );
