@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import * as api from "../api.js";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import CommentList from "./CommentList.jsx";
 
 function Review() {
   const { review_id } = useParams();
@@ -33,8 +35,9 @@ function Review() {
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
       <p>Votes :{review.votes}</p>
-      <p>Comments: {review.comment_count}</p>
       <img src={review.review_img_url} alt="img" />
+      <p>Comments: {review.comment_count}</p>
+      <CommentList />
     </div>
   );
 }

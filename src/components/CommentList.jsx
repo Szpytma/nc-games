@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import * as api from "../api.js";
 import { useParams } from "react-router";
+import CommentCard from "./CommentCard.jsx";
+import "./CommentsStyles.css";
 
 function CommentList() {
   const [comments, setComments] = useState([]);
@@ -16,11 +18,11 @@ function CommentList() {
   return isLoading ? (
     <p>is loading...</p>
   ) : (
-    <div className="ReviewList">
+    <div className="CommentCard">
       {comments.map((comment) => (
-        <h1>{comment.body}</h1>
-        /* <CommentCard key={comment.review_id} comment={comment} /> */
+        <CommentCard key={comment.comment_id} comment={comment} />
       ))}
+      <button>add new comment</button>
     </div>
   );
 }
