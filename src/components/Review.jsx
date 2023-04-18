@@ -8,7 +8,8 @@ function Review() {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [disabled, setDisabled] = useState(false);
+  const [likeDisabled, setLikeDisabled] = useState(false);
+  const [dislikeDisabled, setDislikeDisabled] = useState(false);
 
   const formatDate = (dataString) => {
     const date = new Date(dataString);
@@ -16,16 +17,33 @@ function Review() {
     return formattedDate;
   };
   const handleClickLike = () => {
-    setDisabled(true);
-    api.patchReviewVotesAdd(review_id).then((updatedReview) => {
-      setReview(updatedReview);
-    });
+    if (likeDisabled) {
+      setLikeDisabled(false);
+      api.patchReviewVotesDeduct(review_id).then((updatedReview) => {
+        setReview(updatedReview);
+      });
+    } else {
+      setLikeDisabled(true);
+      setDislikeDisabled(false);
+      api.patchReviewVotesAdd(review_id).then((updatedReview) => {
+        setReview(updatedReview);
+      });
+    }
   };
+
   const handleClickDislike = () => {
-    setDisabled(true);
-    api.patchReviewVotesDeduct(review_id).then((updatedReview) => {
-      setReview(updatedReview);
-    });
+    if (dislikeDisabled) {
+      setDislikeDisabled(false);
+      api.patchReviewVotesAdd(review_id).then((updatedReview) => {
+        setReview(updatedReview);
+      });
+    } else {
+      setDislikeDisabled(true);
+      setLikeDisabled(false);
+      api.patchReviewVotesDeduct(review_id).then((updatedReview) => {
+        setReview(updatedReview);
+      });
+    }
   };
 
   useEffect(() => {
@@ -46,11 +64,11 @@ function Review() {
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
       <p>
-        <button onClick={handleClickLike} disabled={disabled}>
+        <button onClick={handleClickLike} disabled={likeDisabled}>
           👍
         </button>
         Votes {review.votes}{" "}
-        <button onClick={handleClickDislike} disabled={disabled}>
+        <button onClick={handleClickDislike} disabled={dislikeDisabled}>
           👎
         </button>
       </p>
