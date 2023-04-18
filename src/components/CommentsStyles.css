@@ -1,0 +1,18 @@
+.CommentCard {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.CommentCard h3 {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.CommentCard p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}

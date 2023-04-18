@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import * as api from "../api.js";
 import { useEffect, useState } from "react";
+import CommentList from "./CommentList.jsx";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 function Review() {
   const { review_id } = useParams();
@@ -9,9 +11,7 @@ function Review() {
 
   const formatDate = (dataString) => {
     const date = new Date(dataString);
-    const formattedDate = `${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
+    const formattedDate = date.toLocaleString();
     return formattedDate;
   };
 
@@ -23,7 +23,7 @@ function Review() {
   }, [review_id]);
 
   return isLoading ? (
-    <p>is loading...</p>
+    <LoadingSpinner />
   ) : (
     <div className="Review">
       <h2>{review.title}</h2>
@@ -32,9 +32,10 @@ function Review() {
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
-      <p>Votes :{review.votes}</p>
-      <p>Comments: {review.comment_count}</p>
+      <p>Votes {review.votes} 👍</p>
       <img src={review.review_img_url} alt="img" />
+      <p>Comments: {review.comment_count}</p>
+      <CommentList />
     </div>
   );
 }
