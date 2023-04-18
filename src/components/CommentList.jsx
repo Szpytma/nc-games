@@ -20,11 +20,17 @@ function CommentList() {
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-    <div className="CommentCard">
-      {comments.map((comment) => (
-        <CommentCard key={comment.comment_id} comment={comment} />
-      ))}
-      <button>add new comment</button>
+    <div>
+      <div className="CommentCard">
+        {comments.map((comment) => (
+          <CommentCard key={comment.comment_id} comment={comment} />
+        ))}
+      </div>
+      <CommentForm
+        review_id={review_id}
+        comments={comments}
+        setComments={setComments}
+      />
     </div>
   );
 }

@@ -31,3 +31,11 @@ export const patchReviewVotesDeduct = async (review_id) => {
   });
   return data.review;
 };
+
+export const postComment = async (review_id, username, body) => {
+  const { data } = await api.post(`reviews/${review_id}/comments`, {
+    username,
+    body,
+  });
+  return data.comment;
+};
