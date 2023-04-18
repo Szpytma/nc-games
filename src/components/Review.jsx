@@ -8,11 +8,18 @@ function Review() {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
   const formatDate = (dataString) => {
     const date = new Date(dataString);
     const formattedDate = date.toLocaleString();
     return formattedDate;
+  };
+  const handleClick = () => {
+    api.patchReviewVotes(review_id).then((updatedReview) => {
+      setReview(updatedReview);
+      setDisabled(true);
+    });
   };
 
   useEffect(() => {
@@ -32,7 +39,13 @@ function Review() {
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
-      <p>Votes {review.votes} 👍</p>
+      <p>
+        Votes {review.votes}{" "}
+        <button onClick={handleClick} disabled={disabled}>
+          👍
+        </button>
+      </p>
+
       <img src={review.review_img_url} alt="img" />
       <p>Comments: {review.comment_count}</p>
       <CommentList />
