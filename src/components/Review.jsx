@@ -15,10 +15,16 @@ function Review() {
     const formattedDate = date.toLocaleString();
     return formattedDate;
   };
-  const handleClick = () => {
-    api.patchReviewVotes(review_id).then((updatedReview) => {
+  const handleClickLike = () => {
+    setDisabled(true);
+    api.patchReviewVotesAdd(review_id).then((updatedReview) => {
       setReview(updatedReview);
-      setDisabled(true);
+    });
+  };
+  const handleClickDislike = () => {
+    setDisabled(true);
+    api.patchReviewVotesDeduct(review_id).then((updatedReview) => {
+      setReview(updatedReview);
     });
   };
 
@@ -40,9 +46,12 @@ function Review() {
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
       <p>
-        Votes {review.votes}{" "}
-        <button onClick={handleClick} disabled={disabled}>
+        <button onClick={handleClickLike} disabled={disabled}>
           👍
+        </button>
+        Votes {review.votes}{" "}
+        <button onClick={handleClickDislike} disabled={disabled}>
+          👎
         </button>
       </p>
 
