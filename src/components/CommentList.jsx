@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import CommentCard from "./CommentCard.jsx";
 import "./CommentsStyles.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import CommentForm from "./CommentForm.jsx";
 
 function CommentList() {
   const [comments, setComments] = useState([]);
@@ -19,11 +20,17 @@ function CommentList() {
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-    <div className="CommentCard">
-      {comments.map((comment) => (
-        <CommentCard key={comment.comment_id} comment={comment} />
-      ))}
-      <button>add new comment</button>
+    <div>
+      <div className="CommentCard">
+        {comments.map((comment) => (
+          <CommentCard key={comment.comment_id} comment={comment} />
+        ))}
+      </div>
+      <CommentForm
+        review_id={review_id}
+        comments={comments}
+        setComments={setComments}
+      />
     </div>
   );
 }
