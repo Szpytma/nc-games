@@ -17,6 +17,7 @@ function CommentForm({
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
+    setDisabled(false);
   };
 
   const handleSubmit = (event) => {

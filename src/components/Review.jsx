@@ -3,6 +3,7 @@ import * as api from "../api.js";
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import { Link } from "react-router-dom";
 
 function Review({ loggedUser, isLogged }) {
   const { review_id } = useParams();
@@ -59,6 +60,7 @@ function Review({ loggedUser, isLogged }) {
     <LoadingSpinner />
   ) : (
     <div className="Review">
+      <Link to={"/reviews"}>Go back to reviews</Link>
       <h2>{review.title}</h2>
       <p>{review.review_body}</p>
       <p>{review.category}</p>
@@ -83,7 +85,7 @@ function Review({ loggedUser, isLogged }) {
         </p>
       )}
       <img src={review.review_img_url} alt="img" />
-      <p>Comments: {review.comment_count}</p>
+      <p>Comments: </p>
       <CommentList loggedUser={loggedUser} isLogged={isLogged} />
     </div>
   );
