@@ -1,5 +1,5 @@
 import * as api from "../api.js";
-function CommentCard({ comment }) {
+function CommentCard({ comment, comments, setComments }) {
   const formatDate = (dataString) => {
     const date = new Date(dataString);
     const formattedDate = date.toLocaleString();
@@ -7,7 +7,9 @@ function CommentCard({ comment }) {
   };
 
   const removeCommentByID = () => {
-    api.removeCommentByID(comment.comment_id);
+    api.removeCommentByID(comment.comment_id).then(() => {
+      setComments(comments.filter((c) => c.comment_id !== comment.comment_id));
+    });
   };
 
   return (

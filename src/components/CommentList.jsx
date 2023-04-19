@@ -23,7 +23,12 @@ function CommentList() {
     <div>
       <div className="CommentCard">
         {comments.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            comments={comments}
+            setComments={setComments}
+          />
         ))}
       </div>
       <CommentForm
