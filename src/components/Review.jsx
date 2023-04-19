@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import CommentList from "./CommentList.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 
-function Review() {
+function Review({ loggedUser, isLogged }) {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -65,19 +65,26 @@ function Review() {
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
-      <p>
-        <button onClick={handleClickLike} disabled={likeDisabled}>
-          👍
-        </button>
-        Votes {review.votes}{" "}
-        <button onClick={handleClickDislike} disabled={dislikeDisabled}>
-          👎
-        </button>
-      </p>
-
+      {isLogged && (
+        <p>
+          <button onClick={handleClickLike} disabled={likeDisabled}>
+            👍
+          </button>
+          Votes {review.votes}{" "}
+          <button onClick={handleClickDislike} disabled={dislikeDisabled}>
+            👎
+          </button>
+        </p>
+      )}
+      {!isLogged && (
+        <p>
+          <button disabled={true}>👍</button>
+          Votes {review.votes} <button disabled={true}>👎</button>
+        </p>
+      )}
       <img src={review.review_img_url} alt="img" />
       <p>Comments: {review.comment_count}</p>
-      <CommentList />
+      <CommentList loggedUser={loggedUser} isLogged={isLogged} />
     </div>
   );
 }

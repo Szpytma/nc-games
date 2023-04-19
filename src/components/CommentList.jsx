@@ -6,7 +6,7 @@ import "./CommentsStyles.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import CommentForm from "./CommentForm.jsx";
 
-function CommentList() {
+function CommentList({ loggedUser, isLogged }) {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { review_id } = useParams();
@@ -24,6 +24,7 @@ function CommentList() {
       <div className="CommentCard">
         {comments.map((comment) => (
           <CommentCard
+            loggedUser={loggedUser}
             key={comment.comment_id}
             comment={comment}
             comments={comments}
@@ -32,9 +33,11 @@ function CommentList() {
         ))}
       </div>
       <CommentForm
+        loggedUser={loggedUser}
         review_id={review_id}
         comments={comments}
         setComments={setComments}
+        isLogged={isLogged}
       />
     </div>
   );
