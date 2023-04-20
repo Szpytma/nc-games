@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
-
   function handleSubmit(event) {
     event.preventDefault();
   }

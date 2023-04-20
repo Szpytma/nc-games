@@ -4,10 +4,12 @@ const api = axios.create({
   baseURL: "https://nc-games-rkbx.onrender.com/api/",
 });
 
-export const fetchReviews = async (category) => {
+export const fetchReviews = async (category, sortOrder, sortBy) => {
   const { data } = await api.get(`reviews`, {
     params: {
-      category: category,
+      category,
+      order: sortOrder,
+      sort_by: sortBy,
     },
   });
   return data.reviews;
