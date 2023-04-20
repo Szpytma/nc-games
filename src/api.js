@@ -39,3 +39,12 @@ export const postComment = async (review_id, username, body) => {
   });
   return data.comment;
 };
+
+export const removeCommentByID = async (comment_id) => {
+  await api.delete(`comments/${comment_id}`);
+};
+
+export const fetchUsers = async () => {
+  const { data } = await api.get(`users/`);
+  return data.users;
+};

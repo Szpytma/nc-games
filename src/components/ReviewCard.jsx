@@ -10,8 +10,7 @@ function ReviewCard({ review }) {
       <p>{review.designer}</p>
       <img src={review.review_img_url} alt="img" />
       <p>
-      {/* TODO fix the api to get the count on review*/}
-        {review.votes}❤️ ✍️{0}
+        {review.votes}❤️ ✍️{review.comment_count}
       </p>
     </div>
   );

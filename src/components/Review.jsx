@@ -3,8 +3,9 @@ import * as api from "../api.js";
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import { Link } from "react-router-dom";
 
-function Review() {
+function Review({ loggedUser, isLogged }) {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,7 @@ function Review() {
     return formattedDate;
   };
 
-  // TODO allow ser to unclick like /dislike button
+  // TODO allow user to unclick like /dislike button
   const handleClickLike = () => {
     if (likeDisabled) {
       setLikeDisabled(false);
@@ -59,25 +60,33 @@ function Review() {
     <LoadingSpinner />
   ) : (
     <div className="Review">
+      <Link to={"/reviews"}>Go back to reviews</Link>
       <h2>{review.title}</h2>
       <p>{review.review_body}</p>
       <p>{review.category}</p>
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <p>Posted: {formatDate(review.created_at)}</p>
-      <p>
-        <button onClick={handleClickLike} disabled={likeDisabled}>
-          👍
-        </button>
-        Votes {review.votes}{" "}
-        <button onClick={handleClickDislike} disabled={dislikeDisabled}>
-          👎
-        </button>
-      </p>
-
+      {isLogged && (
+        <p>
+          <button onClick={handleClickLike} disabled={likeDisabled}>
+            👍
+          </button>
+          Votes {review.votes}{" "}
+          <button onClick={handleClickDislike} disabled={dislikeDisabled}>
+            👎
+          </button>
+        </p>
+      )}
+      {!isLogged && (
+        <p>
+          <button disabled={true}>👍</button>
+          Votes {review.votes} <button disabled={true}>👎</button>
+        </p>
+      )}
       <img src={review.review_img_url} alt="img" />
-      <p>Comments: {review.comment_count}</p>
-      <CommentList />
+      <p>Comments: </p>
+      <CommentList loggedUser={loggedUser} isLogged={isLogged} />
     </div>
   );
 }
