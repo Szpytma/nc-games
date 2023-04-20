@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import * as api from "../api.js";
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Categories() {
   const [categories, setCategories] = useState([]);
