@@ -4,8 +4,12 @@ const api = axios.create({
   baseURL: "https://nc-games-rkbx.onrender.com/api/",
 });
 
-export const fetchReviews = async () => {
-  const { data } = await api.get(`reviews`);
+export const fetchReviews = async (category) => {
+  const { data } = await api.get(`reviews`, {
+    params: {
+      category: category,
+    },
+  });
   return data.reviews;
 };
 
@@ -45,6 +49,10 @@ export const removeCommentByID = async (comment_id) => {
 };
 
 export const fetchUsers = async () => {
-  const { data } = await api.get(`users/`);
+  const { data } = await api.get(`users`);
   return data.users;
+};
+export const fetchCategories = async () => {
+  const { data } = await api.get(`categories`);
+  return data.categories;
 };
