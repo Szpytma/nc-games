@@ -4,7 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Link to the hosted version [Szpytma nc-games](https://nc-games-jr4p.onrender.com).
 
-# Project description TBC
+# Project description
+
+This application is working with [Szpytma's House of Games API](https://github.com/Szpytma/be-nc-games).
 
 To run that project on your local machine you will need
 
