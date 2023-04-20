@@ -1,53 +1,42 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import * as api from "../api.js";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import * as api from "../api.js";
 
-function Sorting({ searchQueryCategory, searchQueryOrder, searchQuerySortBy }) {
-  const [, setSort] = useState([]);
-  //   const [desc, setDesc] = useState("desc");
+function Sorting() {
+  const [, setSortBy] = useState([]);
+  const [isAsc, setIsAsc] = useState(false);
 
   useEffect(() => {
     api.fetchCategories().then((sortBy) => {
-      setSort(sortBy);
+      setSortBy(sortBy);
     });
-  }, [setSort]);
-  //TODO implement checkbox for asc
-  /* created_at
-    api/reviews?order=desc&sort_by=created_at
-    api/reviews?order=asc&sort_by=created_at */
+  }, [setSortBy]);
 
-  /*comment_count
-    api/reviews?order=desc&sort_by=comment_count
-    api/reviews?order=asc&sort_by=comment_count*/
-
-  /*VOTES
-    api/reviews?order=desc&sort_by=votes
-    api/reviews?order=asc&sort_by=votes*/
+  function handleOrderChange() {
+    setIsAsc(!isAsc);
+  }
   return (
     <div>
       <div>
-        <p>Descending order</p>
-        <Link to={`?order=desc&sort_by=votes`}>
-          <Button>Sort By Votes count </Button>
+        <p>Order by:</p>
+        <Link to={`?order=${isAsc ? "asc" : "desc"}&sort_by=votes`}>
+          <Button>Sort By Votes count</Button>
         </Link>
-        <Link to={`?order=desc&sort_by=created_at`}>
-          <Button>Sort By date </Button>
+        <Link to={`?order=${isAsc ? "asc" : "desc"}&sort_by=created_at`}>
+          <Button>Sort By date</Button>
         </Link>
-        <Link to={`?order=desc&sort_by=comment_count`}>
-          <Button>Sort By comment count </Button>
+        <Link to={`?order=${isAsc ? "asc" : "desc"}&sort_by=comment_count`}>
+          <Button>Sort By comment count</Button>
         </Link>
+
+        <Form.Check
+          type="checkbox"
+          id="asc"
+          checked={isAsc}
+          onChange={handleOrderChange}
+        />
       </div>
-      <p>Ascending order</p>
-      <Link to={`?order=asc&sort_by=votes`}>
-        <Button>Sort By Votes count </Button>
-      </Link>
-      <Link to={`?order=asc&sort_by=created_at`}>
-        <Button>Sort By date </Button>
-      </Link>
-      <Link to={`?order=asc&sort_by=comment_count`}>
-        <Button>Sort By comment count </Button>
-      </Link>
     </div>
   );
 }
