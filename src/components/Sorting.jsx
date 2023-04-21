@@ -6,6 +6,7 @@ import * as api from "../api.js";
 function Sorting({ selectedCategory }) {
   const [, setSortBy] = useState([]);
   const [isAsc, setIsAsc] = useState(false);
+
   useEffect(() => {
     api.fetchCategories().then((sortBy) => {
       setSortBy(sortBy);
