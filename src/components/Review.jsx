@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CommentList from "./CommentList.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import * as api from "../api.js";
+import ErrorReviewNotFound from "./ErrorReviewNotFound.jsx";
 
 function Review({ loggedUser, isLogged }) {
   const { review_id } = useParams();
@@ -11,6 +12,7 @@ function Review({ loggedUser, isLogged }) {
   const [isLoading, setIsLoading] = useState(true);
   const [likeDisabled, setLikeDisabled] = useState(false);
   const [dislikeDisabled, setDislikeDisabled] = useState(false);
+  const [error, setError] = useState(null);
 
   const formatDate = (dataString) => {
     const date = new Date(dataString);
@@ -50,12 +52,19 @@ function Review({ loggedUser, isLogged }) {
   };
 
   useEffect(() => {
-    api.fetchReviewById(review_id).then((review) => {
-      setReview(review);
-      setIsLoading(false);
-    });
+    api
+      .fetchReviewById(review_id)
+      .then((review) => {
+        setReview(review);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError({ err });
+      });
   }, [review_id]);
-
+  if (error) {
+    return <ErrorReviewNotFound message={"Review does not exist!"} />;
+  }
   return isLoading ? (
     <LoadingSpinner />
   ) : (

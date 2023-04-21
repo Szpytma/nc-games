@@ -6,6 +6,7 @@ import ReviewList from "./components/ReviewList";
 import Review from "./components/Review";
 import Welcome from "./components/Welcome";
 import CommentList from "./components/CommentList";
+import ErrorPageNotFound from "./components/ErrorPageNotFound";
 import * as api from "./api.js";
 import { useEffect, useState } from "react";
 
@@ -48,6 +49,10 @@ function App() {
         <Route
           path="/reviews/:review_id/comments"
           element={<CommentList loggedUser={loggedUser} />}
+        />
+        <Route
+          path="*"
+          element={<ErrorPageNotFound message="404 - Page not found" />}
         />
       </Routes>
 
