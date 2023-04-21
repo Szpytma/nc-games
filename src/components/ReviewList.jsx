@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import Categories from "./Categories.jsx";
-import Sorting from "./Sorting.jsx";
 import * as api from "../api.js";
 import "./ReviewStyles.css";
 
@@ -29,7 +28,6 @@ function ReviewList() {
   ) : (
     <div>
       <Categories />
-      <Sorting />
 
       <div className="ReviewList">
         {reviews.map((review) => (
