@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Link to the hosted version [Szpytma nc-games](https://nc-games-jr4p.onrender.com).
+Link to the hosted version [Szpytma nc-games](https://szpytma-nc-games.netlify.app/).
 
 # Project description
 
