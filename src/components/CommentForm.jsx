@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import * as api from "../api.js";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import * as api from "../api.js";
 
 function CommentForm({
   review_id,

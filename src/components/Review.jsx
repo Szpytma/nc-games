@@ -1,9 +1,9 @@
-import { useParams } from "react-router";
-import * as api from "../api.js";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import CommentList from "./CommentList.jsx";
 import LoadingSpinner from "./LoadingSpinner.jsx";
-import { Link } from "react-router-dom";
+import * as api from "../api.js";
 
 function Review({ loggedUser, isLogged }) {
   const { review_id } = useParams();
